@@ -28,7 +28,7 @@ exports.findThread = async (board) =>
                 reported: 0
             }
         }
-    ).sort({bumped_on: -1}).limit(10);
+    ).sort({bumped_on: -1}).limit(10).lean();
 
     return threadFound;
 }
@@ -40,7 +40,7 @@ exports.deleteThread = async (thread_id, delete_password) =>
             _id: thread_id,
             delete_password: delete_password
         }
-    );
+    ).lean();
 
     return deleteThread ? "success" : "incorrect password";
 }
@@ -57,5 +57,5 @@ exports.reportThread = async (thread_id) =>
                 reported: true
             }
         }
-    );
+    ).lean();
 }

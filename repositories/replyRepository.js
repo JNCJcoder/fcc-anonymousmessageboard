@@ -31,7 +31,7 @@ exports.createReply = async (thread_id, delete_password, text) =>
                 }
             }
         }
-    );
+    ).lean();
 }
 
 exports.findReply = async (thread_id) =>
@@ -49,7 +49,7 @@ exports.findReply = async (thread_id) =>
                 reported: 0
             }
         }
-    );
+    ).lean();
 
     return replys;
 }
@@ -68,7 +68,7 @@ exports.deleteReply = async (thread_id, reply_id, delete_password) =>
                 "replies.$.text": '[deleted]'
             }
         }
-    );
+    ).lean();
 
     return deleteReply ? "success" : "incorrect password";
 }
@@ -86,5 +86,5 @@ exports.reportReply = async (thread_id, reply_id) =>
                 'replies.$.reported': true
             }
         }
-    );
+    ).lean();
 }
